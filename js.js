@@ -31,5 +31,35 @@ recursiveFibFunction(usernumber-1,outputArray,index)
 }
 }
 
+
+function mergesort(arr) {
+if (arr.length <= 1 ) {return arr} 
+
+
+const indexTosplit = Math.floor(arr.length / 2)  
+const left = mergesort(arr.slice(0, indexTosplit))
+const right = mergesort(arr.slice(indexTosplit))    
+
+
+return merge(left,right)
+}
+
+function merge(left,right,results = []) {
+let i = 0
+let j = 0    
+while (i < left.length && j < right.length) {
+if (left[i] < right[j]) {
+  results.push(left[i]);
+  i++;
+} else {
+  results.push(right[j]);
+  j++;
+}
+} 
+return results.concat(left.slice(i)).concat(right.slice(j));
+
+}
+
 InitFibFunction(20)
 recursiveFibFunction(20)
+console.log(mergesort([15,6,4,25,50]))
